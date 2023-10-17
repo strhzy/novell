@@ -26,19 +26,34 @@ def zagadka1():
     else:
         print("Ладно... Попробуй еще раз")
         zagadka1()
+def zagadka2():
+    print("Оно принадлежит вам, но остальные используют его чаще вас.")
+    otvet = str(input())
+    if otvet == "Имя" or otvet == "имя" or otvet == "ИМЯ":
+        print("Молодец! Проходи дальше.")
+        game()
+    else:
+        print("Ладно... Попробуй еще раз")
+        zagadka2()
 def zagadka_hub():
-    x = random.randint(1,1)
+    x = random.randint(1,2)
     match x:
         case 1:
             zagadka1()
+        case 2:
+            zagadka2()
 def death():
     print("Вы сдохли")
+    time.sleep(1)
     print("Ваш путь за игру:", trail)
+    time.sleep(1)
     print("Ваш инвентарь за игру:", inventory)
+    time.sleep(1)
     exit()
 def octopus():
     trail.append("осьминог")
     print("Вы встретили осьминога в шляпе")
+    time.sleep(1)
     print("Осьминог говорит: Добрый день")
     vyboroct = str(input("1. Откуда вы знаете что сейчас день\n2. У вас очень красивая шляпа\n3. У вас отвратительная шляпа"))
     match(vyboroct):
@@ -51,10 +66,12 @@ def octopus():
             zagadka_hub()
         case "2":
             print("Осьминог говорит: Благодарю. Проходите дальше")
+            time.sleep(1)
             print("Осьминог пропустил вас дальше и дал пару монет")
             game()
         case "3":
             print("Осьминог говорит: Да как ты посмел?!")
+            time.sleep(1)
             print("Осьминог сжал вас шупальцами и задушил")
             death()
         case _:
@@ -70,11 +87,53 @@ def ogr():
             game()
         case "2":
             print("Огр кричит: ТЫ ШТО АФИГЕЛ?")
+            time.sleep(1)
             print("*БОНЬК*")
+            time.sleep(1)
             print("Огр ударил вас дубиной")
+            time.sleep(1)
             death()
         case "3":
             print("Вы развернулись и ушли до того как огр что-то успел сказать")
+            game()
+def nardy():
+    print("Это оказались бесконечные нарды")
+    time.sleep(1)
+    print("Вы до скончания времен играли в нарды")
+    time.sleep(1)
+    death()
+def gnome():
+    trail.append("гном")
+    print("Вы встретили гнома\nГном очень рад вас видеть\nВидимо он провел здесь много времени")
+    time.sleep(1)
+    print("Гном говорит: Наконец-то нормальный человек")
+    vyborgnome=str(input("1.А что, кроме меня здесь людей нет.\n2.Ты не знаешь где здесь сокровищница?"))
+    match vyborgnome:
+        case "1":
+            print("Как виидишь нет")
+            time.sleep(1)
+            print("Здесь вообще мало кого встретишь...")
+            time.sleep(1)
+            print("Ну раз ты здесь давай играть в нарды")
+            vyborgnome2=str(input("1.Ладно\n2.Нет спасибо, я пойду"))
+            match vyborgnome2:
+                case "1":
+                    nardy()
+                case "2":
+                    print("Ну ладно...")
+                    time.sleep(1)
+                    print("Гном явно расстроился")
+                    time.sleep(1)
+                    game()
+        case "2":
+            print("И ты про сокровища...")
+            time.sleep(1)
+            print("Тебе нужно найти крысу которая охраняет сокровища")
+            time.sleep(1)
+            print("Она загадает тебе загадку, и если решишь то получишь сокоровища")
+            time.sleep(1)
+            print("Вы поблагодарили гнома и пошли дальше")
+            time.sleep(1)
             game()
 def crysa():
     trail.append("крыса")
@@ -83,14 +142,17 @@ def crysa():
     match vyborcrys:
         case "1":
             print("Вы подошли к фигуре и увидели что это крыса.\nКрыса увидела вас и начала говорить.\nКрыса говорит: Здравствуй странник. Я крыса-хранитель.")
-            print("Я охраняю местную сокровищницу. Я так понимаю ты здесь ради моих владений?")
-            vyborcrys2=str(input("1. Да, я здесь ради сокровищ\n2. Нет, я чтобы убить тебя\n3. Да не, я по приколу пришел"))
+            time.sleep(1)
+            print("Я охраняю местную сокровищницу. Я так понимаю ты здесь ради неё?")
+            time.sleep(1)
+            vyborcrys2=str(input("1. Да, я здесь ради сокровищ\n2. Нет, я пришёл чтобы убить тебя\n3. Да не, я по приколу пришел"))
             match vyborcrys2:
                 case "1":
                     print("Крыса говорит: Раз ты хочешь сокровища то реши головоломку.")
                     zamok()
                 case "2":
-                    print("Крыса говорит: Друг, мне проблемы не нужны. Если нужны сокровища, реши головоломку и забирай что хочешь.")
+                    print("Крыса говорит: Друг, мне проблемы не нужны.")
+                    print("Если нужны сокровища, реши головоломку и забирай что хочешь.")
                     zamok()
                 case "3":
                     print("Крыса говорит: Ну раз так то держи хотя бы бутылку вина")
@@ -108,17 +170,21 @@ def corridor():
         corridor()
 def game():
     print("Вы вышли в какую-то комнату комнату")
-    x=random.randint(1,151)
-    if x>=1 and x<=50:
+    x=random.randint(1,41)
+    if x>=1 and x<=10:
         corridor()
-    if x>=51 and x<=100:
+    if x>=11 and x<=20:
         octopus()
-    if x>=101 and x<=150:
+    if x>=21 and x<=30:
         ogr()
-    if x==151:
+    if x>=31 and x<=40:
+        gnome()
+    if x==41:
         crysa()
 print("ИГРА НОВЕЛЛА")
+time.sleep(1)
 print("Автор идеи - Моя шиза")
+time.sleep(1)
 text_nach = "Чтобы начать играть, нажмите Y\nЧтобы выйти, нажмите что угодно"
 print(text_nach)
 nach = str(input())
